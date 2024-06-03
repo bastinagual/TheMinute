@@ -9,21 +9,17 @@ import SwiftUI
 
 @main
 struct TheMinuteApp: App {
-    var timerViewModel = TimerViewModel()
-    
+    let notificationService = NotificationService()
+    let timerViewModel: TimerViewModel
     init() {
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
-            if success {
-                print("All set!")
-            } else if let error {
-                print(error.localizedDescription)
-            }
-        }
+        timerViewModel = TimerViewModel(notificationService: notificationService)
+        notificationService.requestNotificationPermissions()
     }
     
     var body: some Scene {
         WindowGroup {
-            ContentView(timerViewModel: timerViewModel)
+            TimerView()
+                .environmentObject(timerViewModel)
         }
     }
 }

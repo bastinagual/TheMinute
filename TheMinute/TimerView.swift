@@ -7,12 +7,8 @@
 
 import SwiftUI
 
-struct ContentView: View {
-    @ObservedObject var timerViewModel: TimerViewModel
-    
-    init(timerViewModel: TimerViewModel) {
-        self.timerViewModel = timerViewModel
-    }
+struct TimerView: View {
+    @EnvironmentObject var timerViewModel: TimerViewModel
     
     var body: some View {
         VStack {
@@ -44,27 +40,30 @@ struct CircularProgressView: View {
 
   var body: some View {
     ZStack {
-      Circle()
-        .stroke(lineWidth: 20)
-        .opacity(0.1)
-        .foregroundColor(.blue)
+        Circle()
+            .stroke(lineWidth: 20)
+            .opacity(0.1)
+            .foregroundColor(.blue)
 
         Circle()
             .trim(from: 0.0, to: min(startValue, 1.0))
-          .stroke(style: StrokeStyle(lineWidth: 20, lineCap: .round, lineJoin: .miter))
-          .foregroundColor(.blue)
-          .rotationEffect(Angle(degrees: 270.0))
+            .stroke(style: StrokeStyle(lineWidth: 20, lineCap: .round, lineJoin: .miter))
+            .foregroundColor(.blue)
+            .rotationEffect(Angle(degrees: 270.0))
 
-      Circle()
+        Circle()
             .trim(from: startValue, to: min(endValue, 1.0))
-        .stroke(style: StrokeStyle(lineWidth: 20, lineCap: .round, lineJoin: .round))
-        .foregroundColor(.blue)
-        .rotationEffect(Angle(degrees: 270.0))
-        .animation(.linear(duration: animationDuration), value: endValue)
+            .stroke(style: StrokeStyle(lineWidth: 20, lineCap: .round, lineJoin: .round))
+            .foregroundColor(.blue)
+            .rotationEffect(Angle(degrees: 270.0))
+            .animation(.linear(duration: animationDuration), value: endValue)
     }
   }
 }
 
-#Preview {
-    ContentView(timerViewModel: TimerViewModel())
+struct TimerView_Previews: PreviewProvider {
+    static var previews: some View {
+        TimerView()
+            .environmentObject(TimerViewModel(notificationService: NotificationServiceMock()))
+    }
 }

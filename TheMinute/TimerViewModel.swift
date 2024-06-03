@@ -7,9 +7,8 @@
 
 import Foundation
 import Combine
-import UserNotifications
 
-public protocol TimerViewModelProtocol {
+public protocol TimerViewModelProtocol: ObservableObject {
     func startPauseTimer()
     func resetTimer()
     var isRunning : Bool { get }
@@ -43,8 +42,7 @@ public class TimerNumberDisplay {
     }
 }
 
-public class TimerViewModel: ObservableObject,
-                             TimerViewModelProtocol
+public class TimerViewModel: TimerViewModelProtocol
 {
     
     @Published public var isRunning: Bool = false
@@ -57,12 +55,13 @@ public class TimerViewModel: ObservableObject,
     private var startDate: Date?
     private var cancellableTimer: Cancellable?
     @Published private var lastTimerDate: Date = Date()
-    private var currentNotificationRequest: UNNotificationRequest?
     private var finishedTimerBinding: Cancellable?
+    private var notificationService: NotificationServiceProtocol
     
-    init() {
+    init(notificationService : NotificationServiceProtocol) {
         ringAnimation = TimerRingAnimation(startPosition: 0, endPosition: 0, duration: 0)
         numberDisplay = TimerNumberDisplay(minutes: "1", seconds: "00", milliseconds: "000")
+        self.notificationService = notificationService
         initiateDataBindings()
     }
     
@@ -94,7 +93,7 @@ public class TimerViewModel: ObservableObject,
                 .assign(to: &$elapsedTime)
 
         finishedTimerBinding = $elapsedTime
-            .filter { $0 >= 60 }
+            .filter { $0 > 60 }
             .sink { [weak self] _ in
                 self?.cancellableTimer?.cancel()
                 self?.elapsedTime = 60
@@ -103,6 +102,8 @@ public class TimerViewModel: ObservableObject,
     }
     
     public func startPauseTimer() {
+        guard elapsedTime < 60 else { return }
+        
         startOffset = elapsedTime
         isRunning = !isRunning
         
@@ -117,11 +118,11 @@ public class TimerViewModel: ObservableObject,
                     .receive(on: DispatchQueue.main)
                     .assign(to: \.lastTimerDate, on: self)
             
-            scheduleNotification(time: 60 - elapsedTime)
+            notificationService.scheduleNotification(timeInterval: 60 - elapsedTime)
         } else {
             elapsedTime += Date().timeIntervalSince(lastTimerDate)
             cancellableTimer?.cancel()
-            cancelNotification()
+            notificationService.cancelScheduledNotification()
         }
     }
     
@@ -130,25 +131,5 @@ public class TimerViewModel: ObservableObject,
         startOffset = 0
         elapsedTime = 0
         isRunning = false
-    }
-    
-    func scheduleNotification(time: TimeInterval) {
-        let content = UNMutableNotificationContent()
-        content.title = "The minute is over!"
-        content.subtitle = "The timer is done"
-        content.sound = UNNotificationSound.default
-
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: time, repeats: false)
-
-        let newRequest = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
-
-        UNUserNotificationCenter.current().add(newRequest)
-        currentNotificationRequest = newRequest
-    }
-    
-    func cancelNotification() {
-        if let identifier = currentNotificationRequest?.identifier {
-            UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [identifier])
-        }
     }
 }
