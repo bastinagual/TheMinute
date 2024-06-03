@@ -7,13 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C5356F8B2C0B654D00347535 /* TimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5356F8A2C0B654D00347535 /* TimerViewModel.swift */; };
 		C5A79F7C2C0B440B0095960C /* TheMinuteApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A79F7B2C0B440B0095960C /* TheMinuteApp.swift */; };
 		C5A79F7E2C0B440B0095960C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A79F7D2C0B440B0095960C /* ContentView.swift */; };
 		C5A79F802C0B440C0095960C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5A79F7F2C0B440C0095960C /* Assets.xcassets */; };
 		C5A79F832C0B440C0095960C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5A79F822C0B440C0095960C /* Preview Assets.xcassets */; };
-		C5A79F8D2C0B440D0095960C /* TheMinuteTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A79F8C2C0B440D0095960C /* TheMinuteTests.swift */; };
-		C5A79F972C0B440D0095960C /* TheMinuteUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A79F962C0B440D0095960C /* TheMinuteUITests.swift */; };
-		C5A79F992C0B440D0095960C /* TheMinuteUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A79F982C0B440D0095960C /* TheMinuteUITestsLaunchTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,16 +32,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C5356F8A2C0B654D00347535 /* TimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModel.swift; sourceTree = "<group>"; };
+		C5356F8F2C0B677400347535 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C5A79F782C0B440B0095960C /* TheMinute.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheMinute.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5A79F7B2C0B440B0095960C /* TheMinuteApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheMinuteApp.swift; sourceTree = "<group>"; };
 		C5A79F7D2C0B440B0095960C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C5A79F7F2C0B440C0095960C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C5A79F822C0B440C0095960C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C5A79F882C0B440D0095960C /* TheMinuteTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TheMinuteTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C5A79F8C2C0B440D0095960C /* TheMinuteTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheMinuteTests.swift; sourceTree = "<group>"; };
 		C5A79F922C0B440D0095960C /* TheMinuteUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TheMinuteUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C5A79F962C0B440D0095960C /* TheMinuteUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheMinuteUITests.swift; sourceTree = "<group>"; };
-		C5A79F982C0B440D0095960C /* TheMinuteUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheMinuteUITestsLaunchTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,8 +72,6 @@
 			isa = PBXGroup;
 			children = (
 				C5A79F7A2C0B440B0095960C /* TheMinute */,
-				C5A79F8B2C0B440D0095960C /* TheMinuteTests */,
-				C5A79F952C0B440D0095960C /* TheMinuteUITests */,
 				C5A79F792C0B440B0095960C /* Products */,
 			);
 			sourceTree = "<group>";
@@ -94,8 +89,10 @@
 		C5A79F7A2C0B440B0095960C /* TheMinute */ = {
 			isa = PBXGroup;
 			children = (
+				C5356F8F2C0B677400347535 /* Info.plist */,
 				C5A79F7B2C0B440B0095960C /* TheMinuteApp.swift */,
 				C5A79F7D2C0B440B0095960C /* ContentView.swift */,
+				C5356F8A2C0B654D00347535 /* TimerViewModel.swift */,
 				C5A79F7F2C0B440C0095960C /* Assets.xcassets */,
 				C5A79F812C0B440C0095960C /* Preview Content */,
 			);
@@ -108,23 +105,6 @@
 				C5A79F822C0B440C0095960C /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		C5A79F8B2C0B440D0095960C /* TheMinuteTests */ = {
-			isa = PBXGroup;
-			children = (
-				C5A79F8C2C0B440D0095960C /* TheMinuteTests.swift */,
-			);
-			path = TheMinuteTests;
-			sourceTree = "<group>";
-		};
-		C5A79F952C0B440D0095960C /* TheMinuteUITests */ = {
-			isa = PBXGroup;
-			children = (
-				C5A79F962C0B440D0095960C /* TheMinuteUITests.swift */,
-				C5A79F982C0B440D0095960C /* TheMinuteUITestsLaunchTests.swift */,
-			);
-			path = TheMinuteUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,6 +123,8 @@
 			dependencies = (
 			);
 			name = TheMinute;
+			packageProductDependencies = (
+			);
 			productName = TheMinute;
 			productReference = C5A79F782C0B440B0095960C /* TheMinute.app */;
 			productType = "com.apple.product-type.application";
@@ -215,6 +197,8 @@
 				Base,
 			);
 			mainGroup = C5A79F6F2C0B440A0095960C;
+			packageReferences = (
+			);
 			productRefGroup = C5A79F792C0B440B0095960C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -259,6 +243,7 @@
 			files = (
 				C5A79F7E2C0B440B0095960C /* ContentView.swift in Sources */,
 				C5A79F7C2C0B440B0095960C /* TheMinuteApp.swift in Sources */,
+				C5356F8B2C0B654D00347535 /* TimerViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,7 +251,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C5A79F8D2C0B440D0095960C /* TheMinuteTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,8 +258,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C5A79F992C0B440D0095960C /* TheMinuteUITestsLaunchTests.swift in Sources */,
-				C5A79F972C0B440D0095960C /* TheMinuteUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,6 +407,7 @@
 				DEVELOPMENT_TEAM = TNB3N2JZSG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TheMinute/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -454,6 +437,7 @@
 				DEVELOPMENT_TEAM = TNB3N2JZSG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TheMinute/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
