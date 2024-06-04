@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TimerView: View {
-    @EnvironmentObject var timerViewModel: TimerViewModel
+    @StateObject var timerViewModel: TimerViewModel
     
     var body: some View {
         VStack {
@@ -63,7 +63,6 @@ struct CircularProgressView: View {
 
 struct TimerView_Previews: PreviewProvider {
     static var previews: some View {
-        TimerView()
-            .environmentObject(TimerViewModel(notificationService: NotificationServiceMock()))
+        TimerView(timerViewModel: TimerViewModel(notificationService: NotificationServiceMock()))
     }
 }

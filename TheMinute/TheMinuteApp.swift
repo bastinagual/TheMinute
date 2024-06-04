@@ -18,8 +18,7 @@ struct TheMinuteApp: App {
     
     var body: some Scene {
         WindowGroup {
-            TimerView()
-                .environmentObject(timerViewModel)
+            TimerView(timerViewModel: timerViewModel)
         }
     }
 }

@@ -118,7 +118,7 @@ public class TimerViewModel: TimerViewModelProtocol
                     .receive(on: DispatchQueue.main)
                     .assign(to: \.lastTimerDate, on: self)
             
-            notificationService.scheduleNotification(timeInterval: 60 - elapsedTime)
+            notificationService.scheduleNotification(timeInterval: 60 - startOffset)
         } else {
             elapsedTime += Date().timeIntervalSince(lastTimerDate)
             cancellableTimer?.cancel()
@@ -128,6 +128,7 @@ public class TimerViewModel: TimerViewModelProtocol
     
     public func resetTimer() {
         cancellableTimer?.cancel()
+        notificationService.cancelScheduledNotification()
         startOffset = 0
         elapsedTime = 0
         isRunning = false

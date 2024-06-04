@@ -6,5 +6,7 @@
 	<array>
 		<string>processing</string>
 	</array>
+	<key>NSUserNotificationsUsageDescription</key>
+	<string>Hi! We need notifications to tell you when the timer is done and the app is in the background!</string>
 </dict>
 </plist>
