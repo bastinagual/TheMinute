@@ -113,7 +113,7 @@ public class TimerViewModel: TimerViewModelProtocol
         
         if(isRunning) {
             startDate = Date()
-            cancellableTimer = Timer.publish(every: 0.05, on: .main, in: .default)
+            cancellableTimer = Timer.publish(every: 0.01, on: .main, in: .default)
                     .autoconnect()
                     .receive(on: DispatchQueue.main)
                     .assign(to: \.lastTimerDate, on: self)
