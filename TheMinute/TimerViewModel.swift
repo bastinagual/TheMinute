@@ -114,7 +114,6 @@ class TimerViewModel: TimerViewModelProtocol
             startDate = Date()
             cancellableTimer = Timer.publish(every: 0.01, on: .main, in: .default)
                     .autoconnect()
-                    .receive(on: DispatchQueue.main)
                     .assign(to: \.lastTimerDate, on: self)
             
             notificationService.scheduleNotification(timeInterval: 60 - startOffset)
