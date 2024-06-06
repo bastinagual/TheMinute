@@ -14,10 +14,10 @@ protocol NotificationServiceProtocol {
     func cancelScheduledNotification()
 }
 
-public class NotificationService: NotificationServiceProtocol {
+class NotificationService: NotificationServiceProtocol {
     private var currentNotificationRequest: UNNotificationRequest?
     
-    public func requestNotificationPermissions () {
+    func requestNotificationPermissions () {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
             if success {
                 print("All set!")
@@ -27,7 +27,7 @@ public class NotificationService: NotificationServiceProtocol {
         }
     }
 
-    public func scheduleNotification(timeInterval: TimeInterval) {
+    func scheduleNotification(timeInterval: TimeInterval) {
         let content = UNMutableNotificationContent()
         content.title = "The minute is over!"
         content.subtitle = "The timer is done"
@@ -41,7 +41,7 @@ public class NotificationService: NotificationServiceProtocol {
         currentNotificationRequest = newRequest
     }
     
-    public func cancelScheduledNotification() {
+    func cancelScheduledNotification() {
         if let identifier = currentNotificationRequest?.identifier {
             UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [identifier])
         }
@@ -49,7 +49,7 @@ public class NotificationService: NotificationServiceProtocol {
 }
 
 
-public class NotificationServiceMock : NotificationServiceProtocol {
+class NotificationServiceMock : NotificationServiceProtocol {
     func requestNotificationPermissions() {
         print("permissions requested")
     }

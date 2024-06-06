@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-public protocol TimerViewModelProtocol: ObservableObject {
+protocol TimerViewModelProtocol: ObservableObject {
     func startPauseTimer()
     func resetTimer()
     var isRunning : Bool { get }
@@ -18,7 +18,7 @@ public protocol TimerViewModelProtocol: ObservableObject {
     var startPauseButtonText: String { get }
 }
 
-public class TimerRingAnimation {
+class TimerRingAnimation {
     var startPosition : Double
     var endPosition : Double
     var duration : Double
@@ -30,7 +30,7 @@ public class TimerRingAnimation {
     }
 }
 
-public class TimerNumberDisplay {
+class TimerNumberDisplay {
     var minutes : String
     var seconds : String
     var milliseconds : String
@@ -42,14 +42,13 @@ public class TimerNumberDisplay {
     }
 }
 
-public class TimerViewModel: TimerViewModelProtocol
+class TimerViewModel: TimerViewModelProtocol
 {
-    
-    @Published public var isRunning: Bool = false
-    @Published public var ringAnimation: TimerRingAnimation
-    @Published public var elapsedTime: TimeInterval = 0
-    @Published public var numberDisplay: TimerNumberDisplay
-    @Published public var startPauseButtonText: String = "Start"
+    @Published var isRunning: Bool = false
+    @Published var ringAnimation: TimerRingAnimation
+    @Published var elapsedTime: TimeInterval = 0
+    @Published var numberDisplay: TimerNumberDisplay
+    @Published var startPauseButtonText: String = "Start"
     
     private var startOffset: TimeInterval = 0
     private var startDate: Date?
@@ -101,7 +100,7 @@ public class TimerViewModel: TimerViewModelProtocol
             }
     }
     
-    public func startPauseTimer() {
+    func startPauseTimer() {
         guard elapsedTime < 60 else { return }
         
         startOffset = elapsedTime
@@ -126,7 +125,7 @@ public class TimerViewModel: TimerViewModelProtocol
         }
     }
     
-    public func resetTimer() {
+    func resetTimer() {
         cancellableTimer?.cancel()
         notificationService.cancelScheduledNotification()
         startOffset = 0

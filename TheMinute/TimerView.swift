@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TimerView: View {
+struct TimerView<TimerViewModel>: View where TimerViewModel: TimerViewModelProtocol {
     @StateObject var timerViewModel: TimerViewModel
     
     var body: some View {
@@ -20,6 +20,7 @@ struct TimerView: View {
                 Text("\(timerViewModel.numberDisplay.minutes) : \(timerViewModel.numberDisplay.seconds) : \( timerViewModel.numberDisplay.milliseconds) " ).font(.largeTitle)
                     .padding()
             }
+            .monospacedDigit()
             HStack {
                 Button(timerViewModel.startPauseButtonText, action: timerViewModel.startPauseTimer)
                     .font(.title)
@@ -46,13 +47,7 @@ struct CircularProgressView: View {
             .foregroundColor(.blue)
 
         Circle()
-            .trim(from: 0.0, to: min(startValue, 1.0))
-            .stroke(style: StrokeStyle(lineWidth: 20, lineCap: .round, lineJoin: .miter))
-            .foregroundColor(.blue)
-            .rotationEffect(Angle(degrees: 270.0))
-
-        Circle()
-            .trim(from: startValue, to: min(endValue, 1.0))
+            .trim(from: 0.0, to: min(endValue, 1.0))
             .stroke(style: StrokeStyle(lineWidth: 20, lineCap: .round, lineJoin: .round))
             .foregroundColor(.blue)
             .rotationEffect(Angle(degrees: 270.0))
